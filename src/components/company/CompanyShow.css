@@ -1,0 +1,123 @@
+.show-container {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+.show-comp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.show-comp-list {
+    list-style-type: none;
+    text-align: center;
+}
+.show-comp-list li:nth-child(1){
+    font-size: 1.3em;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 5px 0;
+    background-color: rgba(46,204,113,.3);
+    border-radius: 10px;
+}
+.show-comp-list li:nth-child(2){
+    margin-top: 10px;
+}
+.description {
+    padding: 3px 0;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+.employee-go-btn {
+    width: 150px;
+    background-color: var(--main-edit-btn);
+    padding: 15px;
+    text-align: center;
+    margin-left: 40px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+.all-table-container {
+    display: flex;
+    flex-direction: column;
+    border: solid 0px;
+    border-top-width: 1px;
+    margin-top: 10px;
+    padding: 10px;
+}
+.nav-table {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+    align-items: center;
+}
+.table-i-date {
+    border:solid 1px black;
+    padding: 5px;
+    border-radius: 2px;
+}
+.table-i-date:focus {
+    outline: none;
+}
+.table-now-date {
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+}
+
+
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    background-color: aliceblue;
+    margin: 4px;
+    border-radius: 5px;
+    box-shadow: 0px .6px 1px 0px rgba(0,0,0,0.43);
+    padding: 7px;
+    text-decoration: none;
+    align-items: center;
+}
+.list-content {
+    padding: 7px;
+    color: black;
+    text-decoration: none;
+    font-size: 1.3em;
+    width: 50%;
+}
+.list-header {
+    font-size: 1.2em;
+    font-weight: 600;
+    
+}
+.list-description {
+    font-size: .9em;
+    font-weight: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+}
+.admin-container {
+    display: flex;
+    align-items: center;
+}
+.edit-btn {
+    margin: 2px;
+    padding: 20px;
+    background-color: var(--main-edit-btn);
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+.delete-btn {
+    margin: 2px;
+    padding: 20px;
+    text-decoration: none;
+    color: black;
+    background-color: var(--main-delete-btn);
+    cursor: pointer;
+}

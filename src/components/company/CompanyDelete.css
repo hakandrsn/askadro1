@@ -1,0 +1,15 @@
+.content-container {
+    display: flex;
+    flex-direction: column;
+}
+.content-container label {
+    margin: 3px;
+}
+#sil , #cancel{
+    width: 80px;
+    padding: 9px;
+    border: none;
+    background-color: rgba(46,204,113,.3);
+    margin: 0 5px;
+    cursor: pointer;
+}

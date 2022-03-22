@@ -1,0 +1,73 @@
+:root {
+    --main-color:rgba(116, 125, 140,1.0);
+    --main-color-light:rgba(164, 176, 190,1.0);
+    --main-edit-btn:rgba(241,196,15,.8);
+    --main-delete-btn:rgba(231,76,60,.7)
+}
+
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 65px 130px 2fr 0.2fr;
+    grid-template-areas: 
+    "nav nav "
+    "sidebar content "
+    "sidebar main"
+    "sidebar footer "
+    ;
+    grid-gap: 0.2rem;
+    justify-content: center;
+}
+#header {
+    background-color: var(--main-color);
+    grid-area: nav;
+    padding: 2px 5px 3px 4px;
+}
+#sidebar {
+    background-color: var(--main-color-light);
+    grid-area: sidebar;
+    padding: 2px 5px 3px 4px;
+    
+}
+#content {
+    grid-area: content;
+}
+main {
+    grid-area: main;
+    padding: 2px 5px 3px 4px;
+}
+
+
+#footer {
+    background-color: slategray;
+    grid-area: footer;
+    padding: 2px 5px 3px 4px;
+}
+
+@media only screen and (max-width:550px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 65px 0.6fr 2.2fr 130px 1fr;
+        grid-template-areas: 
+        "nav"
+        "sidebar"
+        "main"
+        "content"
+        "footer"
+        ;
+    }
+}
+@media only screen and (max-width:900px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 65px 0.4fr 2.2fr 130px 0.3fr;
+        grid-template-areas: 
+        "nav"
+        "sidebar"
+        "main"
+        "content"
+        "footer"
+        ;
+    }
+}

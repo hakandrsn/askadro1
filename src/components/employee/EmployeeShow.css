@@ -1,0 +1,37 @@
+.show-container {
+    padding: 15px;
+}
+.show-emp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.show-emp-list {
+    text-transform: capitalize;
+    text-decoration: none;
+    padding: 10px;
+}
+.emp-title {
+    background-color: rgba(46,204,113,.3);
+    padding: 10px;
+    font-size: 1.3em;
+    border-radius: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    width: max-content;
+}
+.description {
+    font-weight: 400;
+    text-transform: capitalize;
+    margin-top: 5px;
+}
+.emp-go-btn {
+    width: 150px;
+    background-color: var(--main-edit-btn);
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}

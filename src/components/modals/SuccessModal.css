@@ -1,0 +1,52 @@
+.modal-one {
+    position: fixed;
+    top: 20px;
+    right: 7px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.9;
+}
+.modal-two {
+    z-index: 99999;
+    width: 300px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    animation: animate 0.3s;
+    overflow: auto;
+}
+@media only screen and (max-width:900px) {
+    .modal-one {
+        top: 20px;
+        left: 0;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .modal-two {
+        z-index: 99999;
+        width: 300px;
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        border-radius: 15px;
+        position: relative;
+        animation: animate 0.3s;
+        overflow: auto;
+        opacity: 0.9;
+    }
+}
+.modal-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 1.3em;
+}

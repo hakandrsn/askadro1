@@ -1,0 +1,41 @@
+.emp-go-work {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.emp-go-work select {
+    padding: 10px;
+    margin: 5px 10px;
+    border-radius: 4px;
+    background-color: rgb(210, 218, 226);
+
+}
+.emp-go-work select:focus {
+    outline: none;
+
+}
+.emp-go-work input {
+    padding: 10px;
+    margin: 5px 10px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    background-color: rgb(210, 218, 226);
+}
+.emp-go-work input:focus {
+    outline: none;
+}
+input[type="submit"] {
+    background-color: var(--main-edit-btn);
+    padding: 15px;    
+    position: relative;
+    width: 50%;
+    left: 25%;
+}
+.emp-go-work label {
+    padding:5px 10px ;
+    font-size: .9em;
+    font-weight: 600;
+
+}

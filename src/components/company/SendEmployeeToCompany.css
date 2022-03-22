@@ -1,0 +1,148 @@
+.action-container{
+    display: flex;
+}
+.cancel-btn {
+    background-color: var(--main-delete-btn);
+}
+.okey-btn {
+    background-color: var(--main-edit-btn);
+}
+.action-container button {
+    padding: 10px;
+    border: none;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.title-container {
+    font-size: 1em;
+    text-transform: capitalize;
+}
+.modal-search-container {
+    display: flex;
+    padding: 5px;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.send-emp-tab-content {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+@media only screen and (max-width:550px) {
+    .send-emp-tab-content{
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-content: space-around;
+    }
+}
+.left-content {
+    display: flex;
+    flex-direction: column;
+    
+}
+.right-content {
+    flex-direction: column;
+    display: flex;
+}
+.search-content {
+   padding: 2px; 
+   display: flex;
+   flex-direction: column;
+}
+.list-content {
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+}
+.i-label {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+.s-input {
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 3px;
+}
+.right-content {
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.render-lists {
+    padding: 5px;
+    margin: 5px 0;
+    font-size: 1.1em;
+    opacity: .8;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    align-items: center;
+    background-color: aliceblue;
+    border-radius: 5px;
+    overflow: auto;
+}
+.rendered-list {
+    display: flex;
+    flex-direction: column;
+}
+.add-btn {
+    padding: 10px;
+    height: 40px;
+    border: none;
+    background-color: var(--main-edit-btn);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.render-personel-content{
+    display: flex;
+    border: solid 1px gray;
+    border-width: 0 0 1px 0;
+    padding: 5px;
+    justify-content: space-between;
+    align-items: center;
+}
+.inc-btn {
+    border: none;
+    background-color: var(--main-delete-btn);
+    border-radius: 5px;
+    padding: 10px;
+}
+.send-emp-date {
+    border:solid 1px black;
+    padding: 5px;
+    border-radius: 2px;
+}
+.send-emp-date:focus {
+    outline: none;
+}
+.send-emp-now-date {
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.nav-content {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px 0;
+    flex-direction: column;
+    margin: 0 0 10px 0;
+}
+.date-and-time {
+    display: inline-flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+.send-emp-go {
+    width: 100px;
+    background-color: var(--main-edit-btn);
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    border: none;
+}
