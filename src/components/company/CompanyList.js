@@ -29,8 +29,8 @@ const CompanyList = (props) => {
     if (props.companys) {
       return props.companys.map(comp => {
         return (
-          <div className='list-item' key={comp.id} >
-          <Link to={`/company/${comp.id}`} className="list-content">
+          <div className='list-item' key={comp.id} style={{visibility:`${comp.visibility ? "visible":"hidden"}`}}>
+          <Link to={`/company/${comp.id}`} className="list-content" >
               <div className='list-header'> {comp.companyName} </div>
               <div className='list-description'>
                 <span>{`Verdiği Ücret : ${comp.givePrice}`}</span>

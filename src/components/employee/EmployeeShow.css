@@ -12,6 +12,9 @@
     text-decoration: none;
     padding: 10px;
 }
+.list-content {
+    width: max-content;
+}
 .emp-title {
     background-color: rgba(46,204,113,.3);
     padding: 10px;
@@ -34,4 +37,35 @@
     text-decoration: none;
     color: black;
     cursor: pointer;
+}
+.true-btn{
+    width: 75px;
+    background-color: greenyellow;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    border: none;
+}
+.false-btn{
+    width: 75px;
+    background-color: tomato;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    border: none;
+}
+.reflesh-btn {
+    padding: 7px;
+    border: none;
+    background-color: gainsboro;
+    color: black;
+    cursor: pointer;
+    transition: 200ms padding;
+}
+.reflesh-btn:hover {
+    padding: 10px;
 }

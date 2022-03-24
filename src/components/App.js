@@ -34,7 +34,7 @@ import Loginpage from './login/Loginpage'
 import SuccessModal from './modals/SuccessModal'
 import Content2 from './contents/Content2'
 const App = (props) => {
-    const [isHave , setIsHave] = useState(null)
+    const [isHave, setIsHave] = useState(null)
     const [search, setSearch] = useState("")
     const [login, setLogin] = useState(false)
     const auth = getAuth()
@@ -46,12 +46,12 @@ const App = (props) => {
                 }
             } else {
                 setLogin(false)
-            } 
+            }
         })
     }, [])
-    const renderContent =()=> {
-        if(props.success.where) return "Başarılı"
-        if(props.success.error) return "Olmadı"
+    const renderContent = () => {
+        if (props.success.where) return "Başarılı"
+        if (props.success.error) return "Olmadı"
     }
     return (
         <div className='container'>
@@ -60,35 +60,33 @@ const App = (props) => {
                     <Header id="header" setSearch={setSearch} setIsHave={setIsHave} />
                     <SideBar id="sidebar" />
                     {
-                       isHave ? <Content id="content" search={search} /> 
-                       : <Content2 />
+                        isHave ? <Content id="content" search={search} />
+                            : <Content2 />
                     }
                     <Switch>
                         <main>
-                            {/* Şirketler Grubu */}
-                            <Route path="/" exact component={CompanyList} />
-                            <Route path="/newcompany" exact component={CompanyCreate} />
-                            <Route path="/company/:id" exact component={CompanyShow} />
-                            <Route path="/company/edit/:id" exact component={CompanyEdit} />
-                            <Route path="/company/delete/:id" exact component={CompanyDelete} />
-                            <Route path="/company/send/:id" exact component={SendEmployeeToCompany} />
-                            <Route path="/tax" exact component={CompanySendTax} />
+                            <React.Fragment>
+                                {/* Şirketler Grubu */}
+                                <Route path="/" exact component={CompanyList} />
+                                <Route path="/newcompany" exact component={CompanyCreate} />
+                                <Route path="/company/:id" exact component={CompanyShow} />
+                                <Route path="/company/edit/:id" exact component={CompanyEdit} />
+                                <Route path="/company/delete/:id" exact component={CompanyDelete} />
+                                <Route path="/company/send/:id" exact component={SendEmployeeToCompany} />
+                                <Route path="/tax" exact component={CompanySendTax} />
 
-                            {/* Personel Grubu */}
-                            <Route path="/employees" exact component={EmployeeList} />
-                            <Route path="/newemployee" exact component={EmployeeCreate} />
-                            <Route path="/employee/show/:id" exact component={EmployeeShow} />
-                            <Route path="/employee/edit/:id" exact component={EmployeeEdit} />
-                            <Route path="/employee/delete/:id" exact component={EmployeeDelete} />
-                            <Route path="/employee/works/:id" exact component={SendEmployeeToWork} />
+                                {/* Personel Grubu */}
+                                <Route path="/employees" exact component={EmployeeList} />
+                                <Route path="/newemployee" exact component={EmployeeCreate} />
+                                <Route path="/employee/show/:id" exact component={EmployeeShow} />
+                                <Route path="/employee/edit/:id" exact component={EmployeeEdit} />
+                                <Route path="/employee/delete/:id" exact component={EmployeeDelete} />
+                                <Route path="/employee/works/:id" exact component={SendEmployeeToWork} />
 
-                            {/* works grubu */}
-                            <Route path="/company/work/:id/:time" exact component={CompanyWorksList} />
-                            <Route path="/employee/work/:id/:time" exact component={EmployeeWorkList} />
-
-
-
-
+                                {/* works grubu */}
+                                <Route path="/company/work/:id/:time" exact component={CompanyWorksList} />
+                                <Route path="/employee/work/:id/:time" exact component={EmployeeWorkList} />
+                            </React.Fragment>
                         </main>
                     </Switch>
                     <Footer id="footer" />

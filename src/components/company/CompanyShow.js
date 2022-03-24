@@ -13,18 +13,25 @@ const CompanyShow = (props) => {
 
   const { id } = props.match.params
 
-  veri.sort((a,b)=>{
-    if(a.myTime < b.myTime) return 1
-    if(a.myTime > b.myTime) return -1
-    return 0
-  })
-  
-  useEffect(() => {
-    const getCompanyWork = async (id) => {
-      const res = await getDoc(doc(db, CompanyWorks, id))
-      setVeri(Object.values({ ...res.data() }))
+  const sorting =(ggg)=>{
+    if(ggg){
+      ggg.sort((a,b)=>{
+        if(new Date(a.myTime) < new Date(b.myTime)) return 1
+        if(new Date(a.myTime) > new Date(b.myTime)) return -1
+        return 0
+      })
     }
+  }
+
+  const getCompanyWork = async (id) => {
+    const res = await getDoc(doc(db, CompanyWorks, id))
+    setVeri(Object.values({ ...res.data() }))
+  }
+  console.log(veri)
+  useEffect(() => {
     getCompanyWork(id)
+    sorting(veri)
+    props.fetchCompany(id)
   }, [])
   if (!props.company) {
     return <div>Loading...</div>
@@ -44,7 +51,6 @@ const CompanyShow = (props) => {
           <li className='description'>{comp.taxNumber}</li>
         </ul>
         <Link to={`/company/send/${comp.id}`} className="employee-go-btn">
-          <i className="add icon"></i>
           Personel Gönder
         </Link>
       </div>
@@ -55,25 +61,25 @@ const CompanyShow = (props) => {
     if (work) {
       return (
         <div className='admin-container'>
-          <Link to="/" className="edit-btn">
-            Personel Ekle
-          </Link>
-          <Link to="/" className="delete-btn">
+          <button className="edit-btn">
             Ödeme Alındı
-          </Link>
+          </button>
         </div>
       )
     }
   }
   const renderList = () => {
-    return veri && veri.map(work => {
+    return veri && veri.map((work,i) => {
       return (
-        <Link to={`/company/work/${id}/${work.myTime}`} className='list-item' key={work.id} >
+        <div className='list-item' key={i}>
+        <Link to={`/company/work/${id}/${work.myTime}`} className='list-item'  >
           <div className='list-content'>
             <span> <strong>{work.myTime}</strong> Tarihli İşler İçin Tıkla.</span>
           </div>
-          {renderAdmin(work)}
-        </Link>)
+        </Link>
+          {/* {renderAdmin(work)} */}
+        </div>
+        )
     })
   }
 

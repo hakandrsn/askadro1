@@ -1,72 +1,57 @@
-import { doc, getDoc } from 'firebase/firestore'
+import { doc, setDoc } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { fetchEmployee } from '../../actions'
-import { Companys, EmployeeWorks } from '../../actions/fireTypes'
+import { fetchEmployee, getWorksEmp } from '../../actions'
+import { EmployeeWorks } from '../../actions/fireTypes'
 import { db } from '../../services/firebase'
 import "./EmployeeShow.css"
-import { mapKeys } from "lodash"
 
 const EmployeeShow = (props) => {
   const [veri, setVeri] = useState([])
-  const [compVeri, setCompVeri] = useState([])
   const { id } = props.match.params
-  veri.sort((a, b) => {
-    if (a.myTime < b.myTime) return 1
-    if (a.myTime > b.myTime) return -1
-    return 0
-  })
+  const [paying, setPaying] = useState(null)
+  const [reflesh,setReflesh] = useState(null)
 
-  useEffect(() => {
-    getList()
-    return ()=>{
-      getList()
-    }
-  }, [])
-  const getEmployeeWork = async (id) => {
-    try {
-      const res = await getDoc(doc(db, EmployeeWorks, id))
-      setVeri(Object.values({ ...res.data() }))
-    } catch (e) {
-      console.log(e)
-    }
-  }
-  const getList = async () => {
-    const list = []
-    await filteredVeri()
-      .then(a => {
-        Object.values(a).forEach(async b => {
-          await getComp(b)
-            .then(c => {
-              list.push(c)
-            })
-        })
+  const sorting =(veri)=>{
+    if(veri){
+      veri.sort((a,b)=>{
+        if(new Date(a.date) < new Date(b.date)) return 1
+        if(new Date(a.date) > new Date(b.date)) return -1
+        return 0
       })
-    setCompVeri(list)
-  }
- compVeri && console.log(compVeri)
-
-  const getComp = async (id) => {
-    try {
-      const res = (await getDoc(doc(db, Companys, id)))
-      const response = { ...res.data(), id: res.id }
-      return response
-    } catch (error) {
-      console.log(error)
     }
   }
-  const filteredVeri = async () => {
-    const list = []
-    await getEmployeeWork(id)
-    veri.filter(a => {
-      if (list.includes(a.id)) return;
-      list.push(a.id)
-    })
-    return list
+  useEffect(() => {
+    props.getWorksEmp(id)
+    sorting(props.works)
+    setVeri(props.works)
+  }, [paying,reflesh])
+  const payPrice = async (work) => {
+    try {
+      const way = doc(db, EmployeeWorks, id)
+      let isWhat= work.pay ? false :true
+      await setDoc(way, {
+        [work.date]: { pay: isWhat }
+      }, { merge: true })
+      setPaying(new Date().getSeconds())
+    } catch (e) {
+
+    }
   }
-  if (!props.employee) {
-    return <div>Loading...</div>
+  const renderWorks = () => {
+    return veri && veri.map((work, i) => {
+      return (
+        <div className='list-item' key={i}>
+          <Link to={`/employee/work/${id}/${work.date}`} className='list-item' >
+            <div className='list-content'>
+              <span> {i + 1}.  <strong>{work.date}</strong>{`'de ${work.hour} Saatinde ${work.name}  şirketinde`}</span>
+            </div>
+          </Link>
+          <button onClick={() => payPrice(work)} className={`${work.pay === true ? "true-btn" : "false-btn"}`} > {`${work.pay === true ? "Ödendi" : "Öde"}`} </button>
+
+        </div>)
+    })
   }
   const renderEmployee = () => {
     const emp = props.employee
@@ -84,29 +69,14 @@ const EmployeeShow = (props) => {
           <div className='description'>Pozisyonu : {emp.workType} </div>
         </div>
         <Link to={`/employee/works/${emp.id}`} className="emp-go-btn">
-          <i className="add icon"></i>
           Personel Gönder
         </Link>
+        <button onClick={()=>setReflesh(!reflesh)} className='reflesh-btn'>Yenile</button>
       </div>
     )
   }
-  const getName =()=>{
-    const list =[]
-    veri && veri.forEach((y)=>{
-      const a = compVeri.find(a=>a.id===y.id)
-      list.push({...y,cn:a.companyName})
-    })
-    console.log(list)
-  }
-  const renderWorks = () => {
-    return veri && veri.map((work, i) => {
-      return (
-        <Link to={`/employee/work/${id}/${work.myTime}`} className='list-item' key={i} >
-          <div className='list-content'>
-            <span> <strong>{work.myTime}</strong>{`'de ${work.tim} Saatinde ${work.id}  şirketinde`}</span>
-          </div>
-        </Link>)
-    })
+  if (!props.employee) {
+    return <div>Loading...</div>
   }
   return (
     <div className='show-container'>
@@ -119,6 +89,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     employee: state.employees[ownProps.match.params.id],
+    works: state.workData.data
   }
 }
-export default connect(mapStateToProps, { fetchEmployee })(EmployeeShow)
+export default connect(mapStateToProps, { fetchEmployee, getWorksEmp })(EmployeeShow)

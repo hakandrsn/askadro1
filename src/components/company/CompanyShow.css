@@ -107,17 +107,21 @@
 }
 .edit-btn {
     margin: 2px;
-    padding: 20px;
+    padding: 5px;
     background-color: var(--main-edit-btn);
     text-decoration: none;
     color: black;
     cursor: pointer;
+    font-size: .8em;
+    border: none;
 }
 .delete-btn {
     margin: 2px;
-    padding: 20px;
+    padding: 5px;
     text-decoration: none;
     color: black;
     background-color: var(--main-delete-btn);
     cursor: pointer;
+    font-size: .8em;
+    border: none;
 }

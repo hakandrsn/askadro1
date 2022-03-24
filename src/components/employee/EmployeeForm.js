@@ -17,6 +17,7 @@ const validationSchema = yup.object({
 
 const EmployeeForm = (props) => {
   const options = ["garson", "komi", "temizlikçi", "şef", "HK", "steward"]
+  const genders = ["Erkek","Kadın"]
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: props.initialValues
@@ -71,10 +72,14 @@ const EmployeeForm = (props) => {
       <E>{errors.address?.message}</E>
       <Input name="email" header="Email :" type="email" />
       <E>{errors.email?.message}</E>
+      <Input name="lang" header="Dil :" type="text" />
+      <E>{errors.lang?.message}</E>
       <Input name="birthday" header="Doğum tarihi :" type="date" />
       <E>{errors.birthday?.message}</E>
       <Input name="password" header="Şifresi :" type="text" />
       <E>{errors.password?.message}</E>
+      <RenderOption data={genders} header="Cinsiyeti :" name="gender" />
+      <E>{errors.gender?.message}</E>
       <RenderOption data={options} header="Pozisyonu :" name="workType" />
       <E>{errors.workType?.message}</E>
       <input className='submit-btn' type="submit" />

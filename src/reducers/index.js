@@ -4,6 +4,7 @@ import authReducer from "./authReducer"
 import employeeReducer from "./employeeReducer"
 import workReducer from "./workReducer"
 import successReducer from "./successReducer"
+import worksReducer from "./worksReducer"
 
 export default combineReducers({
     auth:authReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
     employees:employeeReducer,
     works:workReducer,
     success:successReducer,
+    workData:worksReducer
 })
