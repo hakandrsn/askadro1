@@ -25,13 +25,13 @@ const CompanyShow = (props) => {
 
   const getCompanyWork = async (id) => {
     const res = await getDoc(doc(db, CompanyWorks, id))
-    setVeri(Object.values({ ...res.data() }))
+    setVeri(Object.values(res.data()))
   }
-  console.log(veri)
+  sorting(veri)
   useEffect(() => {
     getCompanyWork(id)
-    sorting(veri)
     props.fetchCompany(id)
+    
   }, [])
   if (!props.company) {
     return <div>Loading...</div>

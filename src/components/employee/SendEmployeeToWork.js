@@ -1,32 +1,40 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from '../modals/Modal'
 import history from '../../history'
-import { fetchCompanys } from '../../actions'
+import { fetchCompanys, addWorksComp, addWorksEmp, fetchEmployee } from '../../actions'
 import { connect } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import "./SendEmployeeToWork.css"
 
 const SendEmployeeToWork = (props) => {
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const [emp,setEmp]=useState([])
+    const { register, handleSubmit } = useForm()
+    const { id } = props.match.params
     useEffect(() => {
         props.fetchCompanys()
+        props.fetchEmployee(id)
+        setEmp([props.employee])
     }, [])
     const onSubmit = (data) => {
-        console.log(data)
+        const compName = props.companys.filter(a => { if (a.companyName === data.company) return a })
+        if (data.date && data.time) {
+            props.addWorksComp(compName[0].id, data.date, emp, data.time, data.price)
+            props.addWorksEmp(compName[0].id, data.date, emp, data.time, data.price)
+        }
     }
     const renderTitle = () => {
         return (
             <div>Personelin Gideceği İş</div>
         )
     }
-    const renderActions = () => {
-        return (
-            <div>
-                <button onClick={() => history.goBack()}>İptal</button>
-                <button>Tamam</button>
-            </div>
-        )
-    }
+    // const renderActions = () => {
+    //     return (
+    //         <div>
+    //             <button onClick={() => history.goBack()}>İptal</button>
+    //             <button>Tamam</button>
+    //         </div>
+    //     )
+    // }
     const renderComp = () => {
         return props.companys && props.companys.map((com) => {
             return (
@@ -67,8 +75,11 @@ const SendEmployeeToWork = (props) => {
         />
     )
 }
-const mapStateToProps = state => {
-    return { companys: Object.values(state.companys) }
+const mapStateToProps = (state, ownProps) => {
+    return {
+        companys: Object.values(state.companys),
+        employee: state.employees[ownProps.match.params.id],
+    }
 }
 
-export default connect(mapStateToProps, { fetchCompanys })(SendEmployeeToWork)
+export default connect(mapStateToProps, { fetchCompanys, addWorksComp, addWorksEmp, fetchEmployee })(SendEmployeeToWork)

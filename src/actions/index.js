@@ -105,9 +105,10 @@ export const getWorksEmp = (id) => async dispacth => {
 }
 export const getWorksComp = (id,v2) => async dispacth => {
     try {
-        const res = await (await getDoc(doc(db, CompanyWorks, id))).data()[v2]
-        let { tim, myTime } = res
-        const veri2 = omit(res, "tim", "time", "myTime", "price")
+        const res = doc(db,CompanyWorks,id)
+        const response = await (await getDoc(res)).data()[v2] 
+        let { tim, myTime } = response
+        const veri2 = omit(response, "tim", "time", "myTime", "price")
         const list = []
         veri2 && Object.values(veri2).map(async (v) => {
             const res2 = await getDoc(doc(db, Employees, v.id))

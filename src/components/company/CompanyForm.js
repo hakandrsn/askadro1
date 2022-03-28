@@ -20,63 +20,76 @@ const CompanyForm = (props) => {
         defaultValues: props.initialValues,
     })
 
-
-    const RenderTextInput = ({ header, name, type }) => {
+    const RenderTextInput = ({ header, name, type, children }) => {
         const isType = type ? type : "text"
-        return (
-            <div className="i-container">
-                <label className='i-label' htmlFor={header}> {header}</label>
-                <input id={header} className='i-box' type={isType}  {...register(name)} placeholder="..." />
-            </div>
-        )
-    }
-    const RenderCheckboxInput = ({ header, name, className }) => {
-        return (
-            <div className="i-container">
-                <label htmlFor={header} className='i-label'>{header}</label>
-                <input id={header} className='cb-input' type="checkbox"  {...register(name)} />
-            </div>
-        )
-    }
-    const E = ({ children }) => {
-        if (!children) { return null; }
-        return (
-            <div className='error-container'>
-                {children}
-            </div>
-        )
-    }
 
+        return (
+            <React.Fragment>
+                <div className="i-container">
+                    <label className='i-label' htmlFor={header}> {header}</label>
+                    <input id={header} className='i-box' type={isType}  {...register(name)} placeholder="..." />
+                </div>
+                <div className='error-container' style={{ visibility: `${children ? "visible" : "hidden"}` }}>
+                    {children}
+                </div>
+            </React.Fragment>
+        )
+    }
+    const RenderCheckboxInput = ({ header, name, children }) => {
+        return (
+            <React.Fragment>
+                <div className="i-container">
+                    <label htmlFor={header} className='i-label'>{header}</label>
+                    <input id={header} className='cb-input' type="checkbox"  {...register(name)} />
+                </div>
+                <div className='error-container' style={{ visibility: `${children ? "visible" : "hidden"}` }}>
+                    {children}
+                </div>
+            </React.Fragment>
+        )
+    }
     const onSubmit = (data) => {
         reset()
         props.onSubmit(data)
     }
     return (
         <form onSubmit={handleSubmit((data, e) => onSubmit(data, e))} className='form-container'>
-            <RenderTextInput name="companyName" header="Şirket Adı" />
-            <E>{errors.companyName?.message}</E>
-            <RenderTextInput name="email" header="Email" />
-            <E>{errors.email?.message}</E>
-            <RenderTextInput name="password" header="Şifre" />
-            <E>{errors.password?.message}</E>
-            <RenderTextInput name="humanResourceName" header="İnsan Kaynakları Ad Soyad" />
-            <E>{errors.humanResourceName?.message}</E>
-            <RenderTextInput name="humanResourcePhone" header="İnsan Kaynakları Tel" />
-            <E>{errors.humanResourcePhone?.message}</E>
-            <RenderTextInput name="location" header="Konumu" />
-            <E>{errors.location?.message}</E>
-            <RenderTextInput name="phone" header="Telefon Numarası" />
-            <E>{errors.phone?.message}</E>
-            <RenderTextInput name="givePrice" header="Verdiği Net Ücret" />
-            <E>{errors.givePrice?.message}</E>
-            <RenderTextInput name="taxNumber" header="Vergi Numarası" />
-            <E>{errors.taxNumber?.message}</E>
-            <RenderTextInput name="invoice" header="Fatura" />
-            <E>{errors.invoice?.message}</E>
-            <RenderCheckboxInput name="isNesHes" header="Hes Gerekli Mi ?" />
-            <E>{errors.isNesHes?.message}</E>
-            <RenderCheckboxInput name="servis" header="Servis Var Mı ?" />
-            <E>{errors.servis?.message}</E>
+            <RenderTextInput name="companyName" header="Şirket Adı">
+                {errors.companyName?.message}
+            </RenderTextInput>
+            <RenderTextInput name="email" header="Email">
+                {errors.email?.message}
+            </RenderTextInput>
+            <RenderTextInput name="password" header="Şifre">
+                {errors.password?.message}
+            </RenderTextInput>
+            <RenderTextInput name="humanResourceName" header="İnsan Kaynakları Ad Soyad">
+                {errors.humanResourceName?.message}
+            </RenderTextInput>
+            <RenderTextInput name="humanResourcePhone" header="İnsan Kaynakları Tel" >
+                {errors.humanResourcePhone?.message}
+            </RenderTextInput>
+            <RenderTextInput name="location" header="Konumu">
+                {errors.location?.message}
+            </RenderTextInput>
+            <RenderTextInput name="phone" header="Telefon Numarası">
+                {errors.phone?.message}
+            </RenderTextInput>
+            <RenderTextInput name="givePrice" header="Verdiği Net Ücret">
+                {errors.givePrice?.message}
+            </RenderTextInput>
+            <RenderTextInput name="taxNumber" header="Vergi Numarası">
+                {errors.taxNumber?.message}
+            </RenderTextInput>
+            <RenderTextInput name="invoice" header="Fatura">
+                {errors.invoice?.message}
+            </RenderTextInput>
+            <RenderCheckboxInput name="isNesHes" header="Hes Gerekli Mi ?">
+                {errors.isNesHes?.message}
+            </RenderCheckboxInput>
+            <RenderCheckboxInput name="servis" header="Servis Var Mı ?">
+                {errors.servis?.message}
+            </RenderCheckboxInput>
             <input type="submit" className='form-submit-button' />
 
         </form>

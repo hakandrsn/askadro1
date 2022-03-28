@@ -48,6 +48,17 @@ const App = (props) => {
                 setLogin(false)
             }
         })
+        return () => {
+            onAuthStateChanged(auth, (user) => {
+                if (user !== null) {
+                    if (auth.currentUser) {
+                        setLogin(true)
+                    }
+                } else {
+                    setLogin(false)
+                }
+            })
+        }
     }, [])
     const renderContent = () => {
         if (props.success.where) return "Başarılı"

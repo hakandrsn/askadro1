@@ -71,7 +71,6 @@ const SendEmployeeToCompany = (props) => {
             history.goBack()
         }
     }
-
     const renderTopInput = () => {
         return (
             <form className='nav-content'>

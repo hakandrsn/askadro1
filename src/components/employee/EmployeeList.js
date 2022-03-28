@@ -30,7 +30,7 @@ const EmployeeList = (props) => {
     return (
       props.employees.map(emp => {
         return (
-          <div className='list-item' key={emp.id}>
+          <div className='list-item' key={emp.id}  style={{visibility:`${emp.visibility ? "visible":"hidden"}`}}>
             <Link className='list-content' to={`/employee/show/${emp.id}`}>
               <div className='list-header'> {emp.fullName} </div>
               <div className='list-description'>

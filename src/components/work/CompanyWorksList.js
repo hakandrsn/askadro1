@@ -15,7 +15,7 @@ const CompanyWorksList = (props) => {
         return veri && veri.map((wr, i) => {
             return (
                 <div key={i}>
-                    <span>{`${i + 1}.${wr.name}`}</span>
+                    <span>{`${i + 1} . ${wr.name}`}</span>
                     <hr />
                 </div>
             )
@@ -26,7 +26,7 @@ const CompanyWorksList = (props) => {
         <Modal
             onDismiss={() => history.goBack()}
             content={renderContent()}
-            title={`${time} `}
+            title={`${time}`}
         />
 
     )

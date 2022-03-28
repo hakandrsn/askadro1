@@ -11,7 +11,6 @@ const SideBar = (props) => {
   const logout = async () => {
     const auth = getAuth()
     await auth.signOut(auth)
-    console.log("sd")
   }
   return (
     <div id={props.id}>
